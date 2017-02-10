@@ -1,0 +1,32 @@
+create_contents_mail <- function(toaddrs,subject,text){
+  library(rJython) 
+  rJython <- rJython() 
+  rJython$exec("import smtplib") 
+  rJython$exec("from email.MIMEText import MIMEText") 
+  rJython$exec("import email.utils") 
+  
+  mail <- c(
+    "fromaddr = 'barbapianist@gmail.com'", 
+    "toaddrs  = 'stefanobarberis@hotmail.it'", 
+    "msg = MIMEText('Ciao bel cipollotto!!!')", 
+    "msg['From'] = email.utils.formataddr(('sender name', fromaddr))", 
+    "msg['To'] = email.utils.formataddr(('recipient name', toaddrs))", 
+    "msg['Subject'] = 'Download tweets'", 
+    
+    #SMTP server credentials 
+    "username = 'barbapianist@gmail.com'", 
+    "password = 'barberizzio:112'", 
+    
+    #Set SMTP server and send email, e.g., google mail SMTP server 
+    "server = smtplib.SMTP('smtp.gmail.com:587')", 
+    "server.ehlo()", 
+    "server.starttls()", 
+    "server.ehlo()", 
+    "server.login(username,password)", 
+    "server.sendmail(fromaddr,toaddrs,msg.as_string())", 
+    "server.quit()")
+  mail[2] <- paste("toaddrs = '",toaddrs,"'")
+  mail[3] <- paste("msg = MIMEText('",text,"')")
+  mail[6] <- paste("msg['Subject'] = '",subject,"'")
+  jython.exec(rJython,mail)
+}

@@ -1,0 +1,12 @@
+NEW Modifiche al processo 
+
+#--13-01-2015
+Ho semplificato la struttura degli script per facilitare l'azione manuale nel caso di blocco inaspettato dei download.
+
+Ho creato il file FUNZIONE CHE DEVE GIRARE SEMPRE!!!.R che contiene il richiamo al file script.R che carica tutte le connessioni e funzioni. Poi fa partire la funzione di download. 
+Sotto quella funzione c'è quella artigianale da usare nel caso di blocco inaspettato. La funzione artigianale è attualmente commentata.
+
+In script.R ho modificato il richiamo al file send_mail_r.txt perché R non riusciva a caricare la connessione. Non ho capito per quale motivo, ma per tagliare la testa al toro ho importato il file in questione in locale e caricato da qui.
+
+Ho infine creato il progetto TWTR.Rproj per agevolare il richiamo a tutte queste cose.
+#--
